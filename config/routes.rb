@@ -2,6 +2,8 @@ Cichybohater::Application.routes.draw do
   resources :organizations, only: [ :index, :create, :update, :show ]
 
   resources :mobile, only: [ :index ]
+
+  resources :interventions, only: [ :create ]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
