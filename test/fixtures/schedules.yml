@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization_id: 
+  hub_id: 
+  name: MyString
+  start_day: 1
+  end_day: 1
+  start_hour: 1
+  end_hour: 1
+  type: 
+  fallback: MyText
+
+two:
+  organization_id: 
+  hub_id: 
+  name: MyString
+  start_day: 1
+  end_day: 1
+  start_hour: 1
+  end_hour: 1
+  type: 
+  fallback: MyText

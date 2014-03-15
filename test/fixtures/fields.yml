@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  schema_id: 
+  element_order: 1
+  label: MyString
+  description: MyText
+  required: false
+  type: 
+  options: false
+  remember: false
+
+two:
+  name: MyString
+  schema_id: 
+  element_order: 1
+  label: MyString
+  description: MyText
+  required: false
+  type: 
+  options: false
+  remember: false
