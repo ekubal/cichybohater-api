@@ -7,4 +7,13 @@ class Organization < ActiveRecord::Base
   has_many :hubs, through: :schedules
   
   self.per_page = 10
+
+  def badge_url
+    "http://upload.wikimedia.org/wikipedia/commons/7/79/PolishPoliceEagle.png"
+  end
+
+  def as_json(options = {}, &block)
+    methods = [ :badge_url ]
+    super(options.merge({ :except => [ :created_at, :updated_at ], :methods => methods, :dasherize => false }), &block)
+  end
 end
