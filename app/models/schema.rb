@@ -9,18 +9,24 @@ class Schema < ActiveRecord::Base
 
   scope :main, -> { where(:parent_schema_id => nil) }
 
+  attr_accessor :organization
 
   def self.find_by_location(location)
     schemas = Schema.joins(:organizations => :regions).where("CONTAINS(regions.polygon, GeomFromText('POINT(? ?)'))", location[:lat].to_f, location[:lgt].to_f)
 
     time = Time.now
     week_hour = time.wday * 24 + time.hour
+    schemas = schemas.joins(:organizations => :schedules).where('? BETWEEN 24 * start_day + start_hour AND 24 * end_day + end_hour', week_hour)
+  
+    schemas
+  end
 
-    schemas = schemas.joins(:organizations => :schedules).where('? BETWEEN 24 * start_day + start_hour  AND 24 * end_day + end_hour', week_hour)
+  def organization
+    Organization.first
   end
 
   def as_json(options = {}, &block)
-    methods = [ :children, :fields ]
+    methods = [ :children, :fields, :organization ]
     super(options.merge({ :except => [ :created_at, :updated_at, :parent_schema_id ], :methods => methods, :dasherize => false }), &block)
   end
 
