@@ -40,5 +40,6 @@ gem 'carrierwave'
 gem 'has_permalink'
 gem "haml-rails"
 gem 'will_paginate'
+gem 'georuby'
 
 gem 'pry', group: 'development'

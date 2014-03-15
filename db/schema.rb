@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315130544) do
+ActiveRecord::Schema.define(version: 20140315144833) do
 
   create_table "fields", force: true do |t|
     t.integer  "schema_id"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20140315130544) do
   end
 
   add_index "fields", ["schema_id"], name: "index_fields_on_schema_id", using: :btree
+
+# Could not dump table "geom" because of following StandardError
+#   Unknown type 'geometry' for column 'g'
 
   create_table "hub_users", force: true do |t|
     t.integer  "hub_id"
@@ -84,11 +87,8 @@ ActiveRecord::Schema.define(version: 20140315130544) do
     t.datetime "updated_at"
   end
 
-  create_table "regions", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "regions" because of following StandardError
+#   Unknown type 'geometry' for column 'polygon'
 
   create_table "schedules", force: true do |t|
     t.integer  "organization_id"
