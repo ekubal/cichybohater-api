@@ -29,9 +29,6 @@ ActiveRecord::Schema.define(version: 20140315144833) do
 
   add_index "fields", ["schema_id"], name: "index_fields_on_schema_id", using: :btree
 
-# Could not dump table "geom" because of following StandardError
-#   Unknown type 'geometry' for column 'g'
-
   create_table "hub_users", force: true do |t|
     t.integer  "hub_id"
     t.integer  "user_id"

@@ -17,9 +17,6 @@ class Schema < ActiveRecord::Base
     week_hour = time.wday * 24 + time.hour
 
     schemas = schemas.joins(:organizations => :schedules).where('? BETWEEN 24 * start_day + start_hour  AND 24 * end_day + end_hour', week_hour)
-
-
-    all
   end
 
   def as_json(options = {}, &block)
