@@ -5,6 +5,8 @@ class Schema < ActiveRecord::Base
   has_many :organization_schemas
   has_many :organizations, through: :organization_schemas
 
+  scope :main, -> { where(:parent_schema_id => nil) }
+
 
   def self.find_by_location(location)
     all
