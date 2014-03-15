@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315174409) do
+ActiveRecord::Schema.define(version: 20140315184201) do
 
   create_table "fields", force: true do |t|
     t.integer  "schema_id"
@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(version: 20140315174409) do
   create_table "interventions", force: true do |t|
     t.integer  "hub_id"
     t.integer  "status"
-    t.text     "details",    limit: 2147483647
+    t.text     "details",      limit: 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "device_id"
+    t.string   "phone_number"
   end
 
   add_index "interventions", ["hub_id"], name: "index_interventions_on_hub_id", using: :btree
