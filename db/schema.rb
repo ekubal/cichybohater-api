@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315144833) do
+ActiveRecord::Schema.define(version: 20140315174409) do
 
   create_table "fields", force: true do |t|
     t.integer  "schema_id"
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20140315144833) do
     t.boolean  "remember"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink"
   end
 
+  add_index "fields", ["permalink"], name: "index_fields_on_permalink", using: :btree
   add_index "fields", ["schema_id"], name: "index_fields_on_schema_id", using: :btree
 
 # Could not dump table "geom" because of following StandardError
