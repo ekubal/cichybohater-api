@@ -16,6 +16,7 @@ class InterventionsController < ApplicationController
 
     @intervention = @schema.interventions.new device_id: params[:device_id], phone_number: params[:phone_number], location_lat: params[:location].try(:[], :latitude), location_lgt: params[:location].try(:[], :longitude)
     @intervention.field_params = params[:intervention]
+    @intervention.hub_id = 1 # TODO: fix me
 
     if @intervention.save
       render_json({ 
