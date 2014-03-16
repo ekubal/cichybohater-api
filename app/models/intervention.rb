@@ -1,17 +1,22 @@
 # -*- encoding : utf-8 -*-
 class Intervention < ActiveRecord::Base
   belongs_to :hub
+  belongs_to :schema
   has_many :attachments
   has_many :field_values
   has_many :fields, through: :field_values
 
   before_create :build_field_values
   after_create :save_attachments
+  ATTACHMENT_DIR = "#{Rails.root.to_s}/public/attachments/"
 
   attr_accessor :field_params
+  alias_method :details, :field_values
+
+  delegate :label, to: :schema, allow_nil: true
+
   self.per_page = 20
 
-  ATTACHMENT_DIR = "#{Rails.root.to_s}/public/attachments/"
   def build_field_values
     @attachments = {}
     self.field_params ||= {}
@@ -53,14 +58,9 @@ class Intervention < ActiveRecord::Base
     self.created_at.to_i
   end
 
-  def label
-    'label'
-  end
-
-  alias_method :details, :field_values
   def as_json(options = {}, &block)
     methods = [ :details, :location, :when, :label ]
-    super(options.merge({ :only => [ :status ], :methods => methods, :dasherize => false }), &block)
+    super(options.merge({ :only => [ :id, :status ], :methods => methods, :dasherize => false }), &block)
   end
 
 end
