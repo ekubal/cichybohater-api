@@ -5,8 +5,7 @@ class InterventionsController < ApplicationController
     @schema = Schema.find(params[:category_id])
 
     @intervention = Intervention.new device_id: params[:device_id], phone_number: params[:phone_number], location_lat: params[:location].try(:[], :latitude), location_lgt: params[:location].try(:[], :longitude)
-    @intervention.dump_params(params[:intervention])
-
+    @intervention.details = params[:intervention]
 
     if @intervention.save
       render json: { 
