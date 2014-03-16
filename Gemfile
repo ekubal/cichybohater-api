@@ -47,3 +47,5 @@ gem 'magic_encoding'
 gem 'pry'
 gem 'pry-nav'
 gem 'pry-stack_explorer'
+
+gem 'websocket-rails'
