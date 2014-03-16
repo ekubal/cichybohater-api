@@ -17,7 +17,7 @@ class Schema < ActiveRecord::Base
     schemas = Schema.joins(:organizations => :regions).where("CONTAINS(regions.polygon, GeomFromText('POINT(? ?)'))", location[:lat].to_f, location[:lgt].to_f).includes(:organizations)
     time = Time.now
     week_hour = time.wday * 24 + time.hour
-    schemas = schemas.joins(:organizations => :schedules).includes(:schedules).where('? BETWEEN 24 * start_day + start_hour AND 24 * end_day + end_hour', week_hour)
+    schemas = schemas.joins(:organizations => :schedules).includes(:organizations => :schedules).where('? BETWEEN 24 * start_day + start_hour AND 24 * end_day + end_hour', week_hour)
     schemas
   end
 
@@ -26,7 +26,7 @@ class Schema < ActiveRecord::Base
   end
 
   def schedule
-    Schedule.first
+    schedules.first
   end
 
   def as_json(options = {}, &block)
