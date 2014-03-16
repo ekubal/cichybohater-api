@@ -13,7 +13,7 @@ class Schema < ActiveRecord::Base
   attr_accessor :organization
 
   def self.find_by_location(location)
-    schemas = Schema.joins(:organizations => :regions).where("CONTAINS(regions.polygon, GeomFromText('POINT(? ?)'))", location[:lat].to_f, location[:lgt].to_f)
+    schemas = Schema.joins(:organizations => :regions).where("CONTAINS(regions.polygon, GeomFromText('POINT(? ?)'))", location[:lat].to_f, location[:lgt].to_f).includes(:organizations)
     time = Time.now
     week_hour = time.wday * 24 + time.hour
     schemas = schemas.joins(:organizations => :schedules).where('? BETWEEN 24 * start_day + start_hour AND 24 * end_day + end_hour', week_hour)
@@ -22,7 +22,7 @@ class Schema < ActiveRecord::Base
   end
 
   def organization
-    Organization.first
+    organizations.first
   end
 
   def as_json(options = {}, &block)

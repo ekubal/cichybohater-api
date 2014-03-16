@@ -17,6 +17,6 @@ class Organization < ActiveRecord::Base
 
   def as_json(options = {}, &block)
     methods = [ :badge_url ]
-    super(options.merge({ :except => [ :created_at, :updated_at ], :methods => methods, :dasherize => false }), &block)
+    super(options.merge({ :only => [ :id, :name, :badge_url ], :methods => methods, :dasherize => false }), &block)
   end
 end
