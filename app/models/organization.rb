@@ -8,6 +8,8 @@ class Organization < ActiveRecord::Base
   
   self.per_page = 10
 
+  has_attached_file :badge
+
   def badge_url
     "http://upload.wikimedia.org/wikipedia/commons/7/79/PolishPoliceEagle.png"
   end

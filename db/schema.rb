@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315184201) do
+ActiveRecord::Schema.define(version: 20140315194910) do
+
+  create_table "attachments", force: true do |t|
+    t.integer  "intervention_id"
+    t.integer  "field_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "attachments", ["field_id"], name: "index_attachments_on_field_id", using: :btree
+  add_index "attachments", ["intervention_id"], name: "index_attachments_on_intervention_id", using: :btree
 
   create_table "fields", force: true do |t|
     t.integer  "schema_id"
@@ -61,6 +75,8 @@ ActiveRecord::Schema.define(version: 20140315184201) do
     t.datetime "updated_at"
     t.string   "device_id"
     t.string   "phone_number"
+    t.float    "location_lat"
+    t.float    "location_lgt"
   end
 
   add_index "interventions", ["hub_id"], name: "index_interventions_on_hub_id", using: :btree
@@ -89,6 +105,10 @@ ActiveRecord::Schema.define(version: 20140315184201) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "badge_file_name"
+    t.string   "badge_content_type"
+    t.integer  "badge_file_size"
+    t.datetime "badge_updated_at"
   end
 
 # Could not dump table "regions" because of following StandardError
