@@ -8,15 +8,16 @@ class Intervention < ActiveRecord::Base
   before_create :build_field_values
   after_create :save_attachments
 
-  attr_accessor :details
+  attr_accessor :field_params
+  self.per_page = 20
 
   ATTACHMENT_DIR = "#{Rails.root.to_s}/public/attachments/"
   def build_field_values
     @attachments = {}
-    self.details ||= {}
-    fields = Field.where(:permalink => self.details.keys).all.index_by(&:permalink)
+    self.field_params ||= {}
+    fields = Field.where(:permalink => self.field_params.keys).all.index_by(&:permalink)
 
-    self.details.each_pair do |key ,value|
+    self.field_params.each_pair do |key ,value|
       if fields.member?(key)
         if fields[key].type == 'photo'
           filename = Digest::MD5.hexdigest("#{Time.now.to_i}-#{value}")
@@ -43,4 +44,23 @@ class Intervention < ActiveRecord::Base
     end
     true
   end
+
+  def location
+    { :lat => self.location_lat, :lgt => self.location_lgt }
+  end
+
+  def when
+    self.created_at.to_i
+  end
+
+  def label
+    'label'
+  end
+
+  alias_method :details, :field_values
+  def as_json(options = {}, &block)
+    methods = [ :details, :location, :when, :label ]
+    super(options.merge({ :only => [ :status ], :methods => methods, :dasherize => false }), &block)
+  end
+
 end
