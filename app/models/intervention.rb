@@ -8,6 +8,7 @@ class Intervention < ActiveRecord::Base
 
   before_create :build_field_values
   after_create :save_attachments
+  after_create :push_sockets
   ATTACHMENT_DIR = "#{Rails.root.to_s}/public/attachments/"
 
   attr_accessor :field_params
@@ -63,4 +64,7 @@ class Intervention < ActiveRecord::Base
     super(options.merge({ :only => [ :id, :status ], :methods => methods, :dasherize => false }), &block)
   end
 
+  def push_sockets
+    WebsocketRails["hub-sock-#{self.hub_id}"].trigger(:intervention, self.as_json)
+  end
 end

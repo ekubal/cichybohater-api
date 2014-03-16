@@ -45,3 +45,5 @@ gem 'rmagick'
 gem 'magic_encoding'
 
 gem 'pry'
+
+gem 'websocket-rails'
