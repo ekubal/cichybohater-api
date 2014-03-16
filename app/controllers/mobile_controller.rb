@@ -5,8 +5,8 @@ class MobileController < ApplicationController
 
     i = Intervention.last
     i.push_sockets
-    render :json => 'x'
-    return
+    #render :json => 'x'
+    #return
 
     if params.member?(:language) && params.member?(:location)
       @schemas = Schema.main.find_by_location(params[:location])
