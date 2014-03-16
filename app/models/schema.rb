@@ -26,7 +26,7 @@ class Schema < ActiveRecord::Base
   end
 
   def schedule
-    schedules.first
+    Schedule.first
   end
 
   def as_json(options = {}, &block)
