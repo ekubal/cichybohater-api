@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Cichybohater::Application.routes.draw do
   resources :organizations, only: [ :index, :create, :update, :show ]
 

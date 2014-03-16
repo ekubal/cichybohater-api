@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddDeviceInfosToInterventions < ActiveRecord::Migration
   def change
     add_column :interventions, :device_id, :string

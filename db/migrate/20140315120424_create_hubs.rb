@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateHubs < ActiveRecord::Migration
   def change
     create_table :hubs do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OrganizationsController < ApplicationController
   def index
     @organizations = Organization.order(:name).page(params[:page])

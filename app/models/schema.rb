@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Schema < ActiveRecord::Base
   belongs_to :parent_schema, class_name: 'Schema'
   has_many :children, foreign_key: 'parent_schema_id', class_name: 'Schema'

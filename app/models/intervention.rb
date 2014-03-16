@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Intervention < ActiveRecord::Base
   belongs_to :hub
   #belongs_to :organization, through: :hub
@@ -5,6 +6,7 @@ class Intervention < ActiveRecord::Base
 
   def dump_params(params)
     params2 = {}
+    binding.pry
     fields = Field.where(:permalink => params.keys).all.index_by(&:permalink)
     params.each_pair do |key, value|
       if fields.member?(key)

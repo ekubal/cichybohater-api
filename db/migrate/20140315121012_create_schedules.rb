@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSchedules < ActiveRecord::Migration
   def change
     create_table :schedules do |t|

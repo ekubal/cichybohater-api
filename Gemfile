@@ -42,5 +42,6 @@ gem "haml-rails"
 gem 'will_paginate'
 gem 'georuby'
 gem 'rmagick'
+gem 'magic_encoding'
 
-gem 'pry', group: 'development'
+gem 'pry'

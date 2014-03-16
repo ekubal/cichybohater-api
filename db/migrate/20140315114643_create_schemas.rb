@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSchemas < ActiveRecord::Migration
   def change
     create_table :schemas do |t|
