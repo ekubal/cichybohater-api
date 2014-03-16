@@ -3,7 +3,7 @@ class Field < ActiveRecord::Base
   belongs_to :schema
   has_many :field_values
 
-  default_scope order(:element_order)
+  default_scope { order(:element_order) }
   has_permalink :name
   
   def self.inheritance_column 

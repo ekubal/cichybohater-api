@@ -2,16 +2,12 @@
 class InterventionsController < ApplicationController
 
   def index
-    @interventions = Intervention.order('id DESC').page(params[:page])
-
-
+    @interventions = current_user.interventions.order('id DESC').page(params[:page]).includes(:fields)
     render json: { :items => @interventions, :total_pages => @interventions.total_pages }
   end
 
   def show
-    @intervention = Intervention.find(params[:id])
-
-
+    @intervention = current_user.interventions.includes(:fields).find(params[:id])
     render json: @intervention
   end
 
