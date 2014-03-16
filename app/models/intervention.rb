@@ -13,9 +13,10 @@ class Intervention < ActiveRecord::Base
   ATTACHMENT_DIR = "#{Rails.root.to_s}/public/attachments/"
   def build_field_values
     @attachments = {}
-    fields = Field.where(:permalink => params.keys).all.index_by(&:permalink)
+    self.details ||= {}
+    fields = Field.where(:permalink => self.details.keys).all.index_by(&:permalink)
 
-    (self.details || {}).each_pair do |key ,value|
+    self.details.each_pair do |key ,value|
       if fields.member?(key)
         if fields[key].type == 'photo'
           @attachments[key] = value
