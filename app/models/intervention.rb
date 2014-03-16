@@ -1,6 +1,6 @@
 class Intervention < ActiveRecord::Base
   belongs_to :hub
-  belongs_to :organization, through: :hub
+  #belongs_to :organization, through: :hub
   has_many :attachments
 
   def dump_params(params)
