@@ -36,7 +36,7 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-gem 'carrierwave'
+gem 'paperclip'
 gem 'has_permalink'
 gem "haml-rails"
 gem 'will_paginate'
