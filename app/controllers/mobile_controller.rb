@@ -5,7 +5,7 @@ class MobileController < ApplicationController
     if params.member?(:language) && params.member?(:location)
       @schemas = Schema.main.find_by_location(params[:location])
 
-      render json: @schemas
+      render_json @schemas
     end
   end
 end

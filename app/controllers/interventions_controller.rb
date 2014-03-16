@@ -3,12 +3,12 @@ class InterventionsController < ApplicationController
 
   def index
     @interventions = current_user.interventions.order('id DESC').page(params[:page]).includes(:fields)
-    render json: { :items => @interventions, :total_pages => @interventions.total_pages }
+    render_json({ :items => @interventions, :total_pages => @interventions.total_pages })
   end
 
   def show
     @intervention = current_user.interventions.includes(:fields).find(params[:id])
-    render json: @intervention
+    render_json @intervention
   end
 
   def create
@@ -18,14 +18,14 @@ class InterventionsController < ApplicationController
     @intervention.field_params = params[:intervention]
 
     if @intervention.save
-      render json: { 
+      render_json({ 
         status: :success
-      }
+      })
     else
-      render json: {
+      render_json({
         status: :error,
         errors: @intervention.errors.to_a 
-      }
+      })
     end
   end
 

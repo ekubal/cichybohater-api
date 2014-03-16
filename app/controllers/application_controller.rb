@@ -8,4 +8,12 @@ class ApplicationController < ActionController::Base
   def current_user
     User.first
   end
+
+  def render_json(data)
+    if params.member?(:callback)
+      render text: "#{params[:callback]}(#{data.to_json})"
+    else
+      render json: data
+    end
+  end
 end
