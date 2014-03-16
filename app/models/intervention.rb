@@ -37,7 +37,7 @@ class Intervention < ActiveRecord::Base
 
   def save_attachments
     if @attachments.present?
-      @attachments.find_each do |fname,content|
+      @attachments.each_pair do |fname,content|
         File.new("#{ATTACHMENT_DIR}#{fname}", 'w') { |f| f.write(content) }
       end
     end
