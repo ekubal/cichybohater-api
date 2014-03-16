@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315184201) do
+ActiveRecord::Schema.define(version: 20140315185749) do
 
   create_table "fields", force: true do |t|
     t.integer  "schema_id"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20140315184201) do
     t.datetime "updated_at"
     t.string   "device_id"
     t.string   "phone_number"
+    t.float    "location_lat"
+    t.float    "location_lgt"
   end
 
   add_index "interventions", ["hub_id"], name: "index_interventions_on_hub_id", using: :btree
