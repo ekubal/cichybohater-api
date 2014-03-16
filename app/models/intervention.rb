@@ -19,7 +19,7 @@ class Intervention < ActiveRecord::Base
     self.details.each_pair do |key ,value|
       if fields.member?(key)
         if fields[key].type == 'photo'
-          filename = Digest::MD5.hexdigest(value)
+          filename = Digest::MD5.hexdigest("#{Time.now.to_i}-#{value}")
           @attachments[filename] = value
           self.field_values.build(
             :value => filename,
@@ -38,7 +38,7 @@ class Intervention < ActiveRecord::Base
   def save_attachments
     if @attachments.present?
       @attachments.each_pair do |fname,content|
-        File.new("#{ATTACHMENT_DIR}#{fname}", 'w') { |f| f.write(content) }
+        File.open("#{ATTACHMENT_DIR}#{fname}", 'w') { |f| f.write(content) }
       end
     end
     true
