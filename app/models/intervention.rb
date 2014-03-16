@@ -19,8 +19,8 @@ class Intervention < ActiveRecord::Base
     self.details.each_pair do |key ,value|
       if fields.member?(key)
         if fields[key].type == 'photo'
-          @attachments[key] = value
           filename = Digest::MD5.hexdigest(value)
+          @attachments[filename] = value
           self.field_values.build(
             :value => filename,
             :field => fields[key]
